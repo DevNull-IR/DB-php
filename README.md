@@ -28,3 +28,6 @@ FROM Products;
 
 PHP
 
+```php
+select('MIN(Price) AS SmallestPrice','Products');
+```
