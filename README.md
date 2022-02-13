@@ -31,3 +31,17 @@ PHP
 ```php
 select('MIN(Price) AS SmallestPrice','Products');
 ```
+
+
+# SQL INNER JOIN Example
+
+```sql 
+SELECT Orders.OrderID, Customers.CustomerName FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+```
+
+
+PHP
+
+```php
+select('Orders.OrderID, Customers.CustomerName','Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID');
+```
