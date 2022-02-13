@@ -1,2 +1,2 @@
 # DB-php
-Free functions to connect to the database ( mysql ) for php programmers
+Free Functions to connect to the database ( mysql ) for php programmers
