@@ -10,5 +10,5 @@ WHERE CustomerName LIKE 'a%';
 ```
 
 ```php
-select
+select('*','Customers',null,'and CustomerName LIKE "a%"');
 ```
