@@ -111,3 +111,44 @@ function deleted(string $table ,$where = "None",string $other = null){
     $result->execute();
     return $result->rowCount();
 }
+
+
+function update(string $db,$update,$where = "None",string $other = null){
+    global $pdo;
+    $answer = [];
+    $a = null;
+    $answer_where = [];
+    $b = null;
+    foreach($update as $key => $value){
+        $a .= "$key = ? , ";
+        $answer[] = $value;
+    }
+    if (gettype($where) == "array"){
+        foreach($where as $key => $value){
+            $b .= "$key = ? and ";
+            $answer_where[] = $value;
+        }
+        $b = preg_replace("/ and(?=( \w+)?$)/i", null, trim($b));
+    } else {
+        $b = 1;
+    }
+    $a = preg_replace("/ ,(?=( \w+)?$)/", null, trim($a));
+    if (isset($other) && !empty($other)){
+        $other = " $other";
+    }
+    $Sql = "UPDATE $db SET $a WHERE $b" . $other;
+    $Sql = trim($Sql);
+	$result = $pdo->prepare($Sql);
+    if (gettype($update) == "array"){
+		for($i = 1; $i < count($update) + 1; $i++){
+			$result->bindValue($i,$answer[$i -1]);
+		}
+	}
+	if (gettype($where) == "array"){
+		for($i = count($update) + 1; $i < count($where) + count($update) + 1; $i++){
+			$result->bindValue($i,$answer_where[$i -count($update)-1]);
+		}
+	}
+	    $result->execute();
+    return $result->rowCount();
+}
