@@ -12,3 +12,7 @@ WHERE CustomerName LIKE 'a%';
 ```php
 select('*','Customers',null,'and CustomerName LIKE "a%"');
 ```
+
+
+# MIN() Example
+
