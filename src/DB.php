@@ -56,3 +56,25 @@ function select(string $select, string $db,$where = "None",string $other = null)
   ];
   return $execute;
 }
+
+
+function insert(string $table,array $array){
+    global $pdo;
+    $a = null;
+    $b = null;
+    $answer = [];
+    foreach($array as $key=>$value){
+    	$a .= " ? ,";
+        $b .= " $key ,";
+        $answer[] = $value;
+    }
+    $a = preg_replace('/,(?=( \w+)?$)/',null,$a);
+    $b = preg_replace('/,(?=( \w+)?$)/',null,$b);
+    $query = 'INSERT INTO ' . $table .'( ' . $b . ' ) VALUES (' . $a . ')';
+    $result = $pdo->prepare($query);
+    for($i = 1;$i<count($array) +1; $i++){
+        $result->bindValue($i,$answer[$i -1]);
+    }
+    $result->execute();
+    return $result->rowCount();
+}
