@@ -9,6 +9,10 @@ SELECT * FROM Customers
 WHERE CustomerName LIKE 'a%';
 ```
 
+
+PHP 
+
+
 ```php
 select('*','Customers',null,'and CustomerName LIKE "a%"');
 ```
@@ -20,3 +24,7 @@ select('*','Customers',null,'and CustomerName LIKE "a%"');
 SELECT MIN(Price) AS SmallestPrice
 FROM Products;
 ```
+
+
+PHP
+
