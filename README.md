@@ -16,3 +16,7 @@ select('*','Customers',null,'and CustomerName LIKE "a%"');
 
 # MIN() Example
 
+```sql
+SELECT MIN(Price) AS SmallestPrice
+FROM Products;
+```
