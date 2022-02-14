@@ -2,6 +2,12 @@
 Free Functions To Connect To The Database ( Mysql ) For Php Programmers
 
 
+# connect to database
+
+```php
+connect('dbName','myuser','passworduser');
+```
+
 # SQL Select Examples
 
 ```sql
