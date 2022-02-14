@@ -17,6 +17,40 @@ execute :
 
 ![](https://raw.githubusercontent.com/DevNull-IR/DB-php/main/src-document/Capture.PNG)
 
+```array
+array (size=2)
+  'count' => int 3
+  'fetchAll' => 
+    array (size=3)
+      0 => 
+        array (size=7)
+          'id' => int 17
+          'step' => string 'support' (length=7)
+          'chat_id' => int 1212
+          'Cash' => null
+          'vip' => int 0
+          'grade' => int 0
+          'Download' => int 0
+      1 => 
+        array (size=7)
+          'id' => int 18
+          'step' => string 'NewUser' (length=7)
+          'chat_id' => int 1016239559
+          'Cash' => null
+          'vip' => int 0
+          'grade' => int 0
+          'Download' => int 0
+      2 => 
+        array (size=7)
+          'id' => int 19
+          'step' => string 'NewUser' (length=7)
+          'chat_id' => int -663757927
+          'Cash' => null
+          'vip' => int 0
+          'grade' => int 0
+          'Download' => int 0
+```
+
 # SQL LIKE Examples
 
 ```sql
