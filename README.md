@@ -13,6 +13,9 @@ PHP :
 ```php
 $select = select('*','db',['id'=>10],'limit 3');
 ```
+execute :
+
+![](https://raw.githubusercontent.com/DevNull-IR/DB-php/main/src-document/Capture.PNG)
 
 # SQL LIKE Examples
 
