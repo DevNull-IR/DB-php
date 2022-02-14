@@ -2,6 +2,18 @@
 Free Functions To Connect To The Database ( Mysql ) For Php Programmers
 
 
+# SQL Select Examples
+
+```sql
+select * from db where id = 10 limit 3
+```
+
+PHP :
+
+```php
+$select = select('*','db',['id'=>10],'limit 3');
+```
+
 # SQL LIKE Examples
 
 ```sql
