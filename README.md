@@ -57,6 +57,14 @@ array (size=2)
           'Download' => int 0
 ```
 
+```sql 
+select ** from db
+```
+PHP
+```php
+select('*','db');
+```
+
 # SQL LIKE Examples
 
 ```sql
