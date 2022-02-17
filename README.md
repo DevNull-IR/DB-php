@@ -109,3 +109,6 @@ PHP
 ```php
 select('Orders.OrderID, Customers.CustomerName','Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID');
 ```
+
+
+# SQL insert Example
