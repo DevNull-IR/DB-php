@@ -129,3 +129,4 @@ query `insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);` :
 ```sql
 insert into table (one,tow,there) values (?,?,?)
 ```
+**The content is then filled with prepare and bindValue**
