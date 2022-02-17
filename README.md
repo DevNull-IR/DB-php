@@ -112,3 +112,20 @@ select('Orders.OrderID, Customers.CustomerName','Orders INNER JOIN Customers ON 
 
 
 # SQL insert Example
+sql :
+
+```sql
+insert into table (one,tow,there) values ('one','tow','there')
+```
+
+php :
+```php
+
+insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);
+
+```
+execute => 0 or 1
+query `insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);` :
+```sql
+insert into table (one,tow,there) values (?,?,?)
+```
