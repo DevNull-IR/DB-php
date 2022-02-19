@@ -130,3 +130,10 @@ query `insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);` :
 insert into table (one,tow,there) values (?,?,?)
 ```
 **The content is then filled with prepare and bindValue**
+
+# SQL update Example
+
+```sql
+update tb set id = '12' where name = '14'
+```
+PHP :
