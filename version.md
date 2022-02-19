@@ -25,4 +25,5 @@ __Fixed Bugs updates__
 
 # v2.0
 
-- [X] create
+- [X] create function like
+- [X] Fixed All Bugs
