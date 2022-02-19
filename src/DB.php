@@ -54,7 +54,7 @@ function select(string $select, string $db,$where = "None",string $other = null)
         #'fetch' => $result->fetch(PDO::FETCH_ASSOC)
     ];
     $execute['fetch'] = $execute['fetchAll'][0] ?? null;
-    if ($execute['fetch'] == null){
+    if (is_null($execute['fetch'])){
         unset($execute['fetch']);
     }
     return $execute;
