@@ -1,7 +1,7 @@
 # DB-php
 Free Functions To Connect To The Database ( Mysql ) For Php Programmers
 
-***This Version : *** **2**
+**This Version : 2.0**
 
 # connect to database
 
