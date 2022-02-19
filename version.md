@@ -12,3 +12,11 @@ __Fixed Bugs updates__
 
 - [X] create function Connect
 - [X] Fixed Bug functions
+
+# From version 1.6 to version 2.0
+
+__Fixed Bugs updates__
+
+# v2.0
+
+- [X] create
