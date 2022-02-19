@@ -137,3 +137,7 @@ insert into table (one,tow,there) values (?,?,?)
 update tb set id = '12' where name = '14'
 ```
 PHP :
+
+```php
+update();
+```
