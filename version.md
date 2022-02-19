@@ -6,6 +6,9 @@
 - [X] create function select
 # From version 1.1 to version 1.5
 
-__Fix updates__
+__Fixed Bugs updates__
 
 # v1.5
+
+- [X] create function Connect
+- [X] Fixed Bug functions
