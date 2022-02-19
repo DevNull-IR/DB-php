@@ -13,6 +13,12 @@ __Fixed Bugs updates__
 - [X] create function Connect
 - [X] Fixed Bug functions
 
+# v1.6
+
+- [X] Update Function Connect :
+
+**added `$host` in function connect**
+
 # From version 1.6 to version 2.0
 
 __Fixed Bugs updates__
