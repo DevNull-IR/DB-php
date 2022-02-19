@@ -1,6 +1,6 @@
 # DB-php
 Free Functions To Connect To The Database ( Mysql ) For Php Programmers
-
+***This Version : *** **2**
 
 # connect to database
 
@@ -75,9 +75,11 @@ WHERE CustomerName LIKE 'a%';
 
 PHP 
 
-
+This Update : 2.0
 ```php
-select('*','Customers',null,'and CustomerName LIKE "a%"');
+like('*','Customers',[
+    'CustomerName'=>'a%'
+]);
 ```
 
 
