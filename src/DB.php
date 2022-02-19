@@ -54,7 +54,7 @@ function select(string $select, string $db,$where = "None",string $other = null)
         #'fetch' => $result->fetch(PDO::FETCH_ASSOC)
     ];
     $execute['fetch'] = $execute['fetchAll'][0] ?? null;
-    if (is_null($execute['fetch'])){
+    if ($execute['fetch'] == null){
         unset($execute['fetch']);
     }
     return $execute;
@@ -155,4 +155,37 @@ function update(string $db,$update,$where = "None",string $other = null){
 	    $result->execute();
     return $result->rowCount();
 }
-
+function like(string $select,string $table,$like,$where){
+    global $pdo;
+	if (gettype($like) == 'array'){
+    	foreach($like as $key=>$value){
+        	$a .= "$key like ? and ";
+            $answer[] = $value;
+        }
+    }
+    if (gettype($where) == 'array'){
+    	foreach($where as $key=>$value){
+        	$a .= "$key = ? and ";
+            $answer[] = $value;
+        }
+    }
+	#echo "select $select from $table where $a";
+    $a = preg_replace("/ and(?=( \w+)?$)/i", null, trim($a));
+    $a = "select $select from $table where $a";
+    $result = $pdo->prepare($a);
+    for($i = 1;$i < count($answer) + 1;$i++){
+        #echo $answer[$i - 1] . '<br>';
+        $result->bindValue($i,$answer[$i - 1]);
+    }
+    #var_dump($answer);
+    $result->execute();
+        $execute = [
+        'count' => $result->rowCount(),
+        'fetchAll' => $result->fetchall(PDO::FETCH_ASSOC),
+    ];
+    $execute['fetch'] = $execute['fetchAll'][0] ?? null;
+    if ($execute['fetch'] == null){
+        unset($execute['fetch']);
+    }
+    return $execute;
+}
