@@ -1,6 +1,6 @@
 <?php
  $pdo = null;
-function connect($dbname,$username_db,$password_db){
+function connect($dbname,$username_db,$password_db,$host = 'localhost'){
     global $pdo;
     $Option = [
     PDO::ATTR_PERSISTENT => TRUE,
@@ -11,7 +11,7 @@ function connect($dbname,$username_db,$password_db){
 
 try {
     
-    $pdo = new PDO("mysql:host=localhost;dbname=".$dbname.";charset=utf8",$username_db, $password_db , $Option); // set and connect to db by pdo
+    $pdo = new PDO("mysql:host=". $host .";dbname=". $dbname .";charset=utf8", $username_db , $password_db , $Option ); // set and connect to db by pdo
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); // not hack :)
     
 } catch (PDOException $error) {
@@ -152,3 +152,4 @@ function update(string $db,$update,$where = "None",string $other = null){
 	    $result->execute();
     return $result->rowCount();
 }
+
