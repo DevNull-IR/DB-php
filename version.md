@@ -6,6 +6,6 @@
 - [X] create function select
 # From version 1.1 to version 1.5
 
-Fix updates
+__Fix updates__
 
 # v1.5
