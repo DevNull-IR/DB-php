@@ -51,7 +51,6 @@ function select(string $select, string $db,$where = "None",string $other = null)
     $execute = [
         'count' => $result->rowCount(),
         'fetchAll' => $result->fetchall(PDO::FETCH_ASSOC),
-        #'fetch' => $result->fetch(PDO::FETCH_ASSOC)
     ];
     $execute['fetch'] = $execute['fetchAll'][0] ?? null;
     if ($execute['fetch'] == null){
@@ -84,33 +83,33 @@ function insert(string $table,array $array){
 
 
 function deleted(string $table ,$where = "None",string $other = null){
-	global $pdo;
-	$a = null;
-      if (isset($other) && !empty($other)){
-      $other = trim($other);
-      $other = " $other";
-  } else {
-      $other = null;
-  }
-    if ($where === "None"){
-      $where_q = "1";
-  } else if (gettype($where) == "array"){
-        foreach($where as $key => $value){
-      $a .= "$key = ? and ";
-      $answer[] = $value;
-        }
-      $where_q = preg_replace("/ and(?=( \w+)?$)/", null, trim($a));
-  } else {
-      $where_q = "1";
-  }
-	$query = "DELETE FROM $table WHERE $where_q $other";
-    $query = trim($query);
-      $result = $pdo->prepare($query);
-  if (gettype($where) == "array"){
-	for($i = 1;$i<count($where) +1; $i++){
-    $result->bindValue($i,$answer[$i -1]);
+    global $pdo;
+    $a = null;
+    if (isset($other) && !empty($other)){
+        $other = trim($other);
+        $other = " $other";
+    } else {
+        $other = null;
     }
-  }
+    if ($where === "None"){
+        $where_q = "1";
+    } else if (gettype($where) == "array"){
+        foreach($where as $key => $value){
+            $a .= "$key = ? and ";
+            $answer[] = $value;
+        }
+        $where_q = preg_replace("/ and(?=( \w+)?$)/", null, trim($a));
+    } else {
+        $where_q = "1";
+    }
+    $query = "DELETE FROM $table WHERE $where_q $other";
+    $query = trim($query);
+    $result = $pdo->prepare($query);
+    if (gettype($where) == "array"){
+        for($i = 1;$i<count($where) +1; $i++){
+            $result->bindValue($i,$answer[$i -1]);
+        }
+    }
     $result->execute();
     return $result->rowCount();
 }
@@ -155,8 +154,9 @@ function update(string $db,$update,$where = "None",string $other = null){
 	    $result->execute();
     return $result->rowCount();
 }
-function like(string $select,string $table,$like,$where){
+function like(string $select,string $table,$like,$where = null){
     global $pdo;
+    $a = null;
 	if (gettype($like) == 'array'){
     	foreach($like as $key=>$value){
         	$a .= "$key like ? and ";
@@ -169,15 +169,12 @@ function like(string $select,string $table,$like,$where){
             $answer[] = $value;
         }
     }
-	#echo "select $select from $table where $a";
     $a = preg_replace("/ and(?=( \w+)?$)/i", null, trim($a));
     $a = "select $select from $table where $a";
     $result = $pdo->prepare($a);
     for($i = 1;$i < count($answer) + 1;$i++){
-        #echo $answer[$i - 1] . '<br>';
         $result->bindValue($i,$answer[$i - 1]);
     }
-    #var_dump($answer);
     $result->execute();
         $execute = [
         'count' => $result->rowCount(),
