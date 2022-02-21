@@ -149,6 +149,7 @@ If execute is equal to 0, it means that the update has not been done
 
 
 # SQL Created New Table 
+`table(string $table,$column);`
 sql :
 
 ```sql
@@ -161,3 +162,19 @@ php :
 table('accounts',['id'=>'int');
 ```
  execute => 0 or 1
+ 
+ # SQL Set unique column
+ 
+ `unique(string $table,$column);`
+
+SQL :
+
+```sql
+
+```
+
+php:
+```php
+
+unique('accounts',['slug']);
+```
