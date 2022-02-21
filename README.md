@@ -187,9 +187,10 @@ unique('articles',['slug']);
 SQL : 
 
 ```sql
-
+ALTER TABLE accounts
+    ADD PRIMARY KEY (token);
 ```
 php : 
 ```php
-
+primary('accounts',['token']);
 ```
