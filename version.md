@@ -35,3 +35,8 @@ __Fixed Bugs updates__
 - [X] create function table
 - [X] create function unique
 - [X] create function primary
+
+# v2.4 
+
+- [X] Update Documention
+- [X] Fixed All Bugs
