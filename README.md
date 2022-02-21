@@ -59,7 +59,7 @@ array (size=2)
 ```
 
 ```sql 
-select ** from db
+select * from db
 ```
 PHP
 ```php
