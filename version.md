@@ -30,3 +30,8 @@ __Fixed Bugs updates__
 
 # v2.1
  - [X] Fixed Bug in Function Like
+# v2.3
+
+- [X] create function table
+- [X] create function unique
+- [X] create function primary
