@@ -146,3 +146,17 @@ update('tb',['id'=>12],['name'=>14]);
 ```
 execute : 0 or 1
 If execute is equal to 0, it means that the update has not been done
+
+
+# SQL Created New Table 
+sql :
+
+```sql
+CREATE TABLE accounts (
+        id int
+        );
+```
+php :
+```php
+table('accounts',['id'=>'int');
+```
