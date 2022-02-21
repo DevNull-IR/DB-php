@@ -179,3 +179,17 @@ php:
 
 unique('articles',['slug']);
 ```
+
+
+# SQL Set  primary Key
+`primary(string $table,$column);`
+
+SQL : 
+
+```sql
+
+```
+php : 
+```php
+
+```
