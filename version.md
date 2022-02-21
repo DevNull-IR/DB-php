@@ -30,6 +30,11 @@ __Fixed Bugs updates__
 
 # v2.1
  - [X] Fixed Bug in Function Like
+
+# v2.2
+
+- [X] Fixed All Bugs
+
 # v2.3
 
 - [X] create function table
