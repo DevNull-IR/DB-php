@@ -170,11 +170,12 @@ table('accounts',['id'=>'int');
 SQL :
 
 ```sql
-
+ALTER TABLE articles
+    ADD UNIQUE (slug)
 ```
 
 php:
 ```php
 
-unique('accounts',['slug']);
+unique('articles',['slug']);
 ```
