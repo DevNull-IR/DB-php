@@ -27,3 +27,6 @@ __Fixed Bugs updates__
 
 - [X] create function like
 - [X] Fixed All Bugs
+
+# v2.1
+ - [X] Fixed Bug in Function Like
