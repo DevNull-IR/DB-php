@@ -186,3 +186,52 @@ function like(string $select,string $table,$like,$where = null){
     }
     return $execute;
 }
+
+function table(string $table,$column){
+    global $pdo;
+    $a = null;
+    if (gettype($column) == 'array'){
+    	foreach($column as $key=>$value){
+        	$a .= "$key $value,
+        ";
+        }
+    }
+    $a = preg_replace("/,(?=( \w+)?$)/", null, trim($a));
+    $query = "CREATE TABLE $table (
+        $a
+        )";
+    echo $query;
+    $result = $pdo->prepare($query);
+    $result->execute();
+    return $result->rowCount();
+}
+function unique(string $table,$column){
+    global $pdo;
+    $a = null;
+    if (gettype($column) == 'array'){
+    	foreach($column as $key=>$value){
+        	$a .= "$value,";
+        }
+    }
+    $a = preg_replace("/,(?=( \w+)?$)/", null, trim($a));
+    $q = "ALTER TABLE $table
+    ADD UNIQUE ($a);";
+    $result = $pdo->prepare($q);
+    $result->execute();
+    return $result->rowCount();
+}
+function primary(string $table,$column){
+    global $pdo;
+    $a = null;
+    if (gettype($column) == 'array'){
+    	foreach($column as $key=>$value){
+        	$a .= "$value,";
+        }
+    }
+    $a = preg_replace("/,(?=( \w+)?$)/", null, trim($a));
+    $q = "ALTER TABLE $table
+    ADD PRIMARY KEY ($a);";
+    $result = $pdo->prepare($q);
+    $result->execute();
+    return $result->rowCount();
+}
