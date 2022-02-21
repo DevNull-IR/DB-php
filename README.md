@@ -160,3 +160,4 @@ php :
 ```php
 table('accounts',['id'=>'int');
 ```
+ execute => 0 or 1
