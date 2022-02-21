@@ -136,6 +136,8 @@ insert into table (one,tow,there) values (?,?,?)
 
 # SQL update Example
 
+sql:
+
 ```sql
 update tb set id = '12' where name = '14'
 ```
@@ -150,6 +152,7 @@ If execute is equal to 0, it means that the update has not been done
 
 # SQL Created New Table 
 `table(string $table,$column);`
+
 sql :
 
 ```sql
@@ -159,7 +162,7 @@ CREATE TABLE accounts (
 ```
 php :
 ```php
-table('accounts',['id'=>'int');
+table('accounts',['id'=>'int']);
 ```
  execute => 0 or 1
  
