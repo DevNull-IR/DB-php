@@ -1,6 +1,6 @@
 <?php
  $pdo = null;
-function connect(string $dbname,string $username_db,$password_db,$host = 'localhost'){
+function connect(string $dbname,string $username_db,string $password_db,$host = 'localhost'){
         global $pdo;
         $Option = [
         PDO::ATTR_PERSISTENT => TRUE,
