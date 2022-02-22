@@ -5,6 +5,9 @@ Free Functions To Connect To The Database ( Mysql ) For Php Programmers
 
 # connect to database
 
+`connect(string $dbname,string $username_db,string $password_db,string $host = 'localhost');`
+
+
 ```php
 connect('dbName','myuser','passworduser');
 ```
