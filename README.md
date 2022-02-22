@@ -7,9 +7,20 @@ Free Functions To Connect To The Database ( Mysql ) For Php Programmers
 
 `connect(string $dbname,string $username_db,string $password_db,string $host = 'localhost');`
 
-
+This Function : 
 ```php
 connect('dbName','myuser','passworduser');
+```
+Php : 
+```php
+
+        $Option = [
+        PDO::ATTR_PERSISTENT => TRUE,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::MYSQL_ATTR_INIT_COMMAND =>'SET NAMES utf8',
+        PDO::ATTR_EMULATE_PREPARES => false
+    ];
+        $pdo = new PDO("mysql:host=localhost;dbname=dmn_nm;charset=utf8", "myAdmin" , 'abcdefgh1234' , $Option );
 ```
 
 # SQL Select Examples
