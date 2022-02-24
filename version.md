@@ -63,4 +63,6 @@ __Fixed Bugs updates__
 - [X] Update Function table
 - [X] Update Function unique
 - [X] Update Function primary
-- [X] Update Function
+- [X] Created Function Drop
+
+**You will no longer have an error from the database. All errors are stored in the `yourPrject\ErrorDB.log` path**
