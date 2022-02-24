@@ -218,6 +218,8 @@ primary('accounts',['token']);
 
 # Drop Table & column Exsample
 
+`drop($table,array $columns = []);`
+
 SQL Drop column: 
 
 ```sql
