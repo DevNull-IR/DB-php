@@ -236,5 +236,5 @@ DROP TABLE a,b;
 PHP Drop Table :
 
 ```php
-
+drop(['a','b']);
 ```
