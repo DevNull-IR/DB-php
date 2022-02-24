@@ -226,5 +226,5 @@ DROP COLUMN column;
 ```
 PHP Drop column:
 ```php
-drop();
+drop('table',['column']);
 ```
