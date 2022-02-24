@@ -215,3 +215,12 @@ php :
 ```php
 primary('accounts',['token']);
 ```
+
+# Drop Table & column Exsample
+
+SQL : 
+
+```sql
+ALTER TABLE table
+DROP COLUMN column;
+```
