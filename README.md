@@ -1,6 +1,6 @@
 # Update 
 
-**🔥 New update coming soon**
+**🔥 The biggest update ever**
 
 # DB-php
 Free Functions To Connect To The Database ( Mysql ) For Php Programmers
