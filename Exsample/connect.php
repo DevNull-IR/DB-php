@@ -4,4 +4,4 @@ include_once '../src/DB.php';
 
 // exsample 
 
-connect('dbName');
+connect('dbName','username');
