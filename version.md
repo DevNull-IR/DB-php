@@ -57,3 +57,4 @@ __Fixed Bugs updates__
 
 - [X] Update Function select
 - [X] Update Function insert 
+- [X] Update Function deleted
