@@ -54,3 +54,6 @@ __Fixed Bugs updates__
 
 
 **The biggest update ever**
+
+- [X] Update Function select
+- [X] Update Function insert 
