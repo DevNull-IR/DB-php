@@ -218,9 +218,13 @@ primary('accounts',['token']);
 
 # Drop Table & column Exsample
 
-SQL : 
+SQL Drop column: 
 
 ```sql
 ALTER TABLE table
 DROP COLUMN column;
+```
+PHP Drop column:
+```php
+drop();
 ```
