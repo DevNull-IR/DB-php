@@ -45,3 +45,9 @@ __Fixed Bugs updates__
 
 - [X] Update Documention
 - [X] Fixed All Bugs
+
+# From version 2.4 to version 3.0
+
+__Fixed Bugs updates__
+
+# v3.0
