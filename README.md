@@ -233,3 +233,8 @@ SQL Drop Table
 ```sql
 DROP TABLE a,b;
 ```
+PHP Drop Table :
+
+```php
+
+```
