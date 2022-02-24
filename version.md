@@ -60,3 +60,5 @@ __Fixed Bugs updates__
 - [X] Update Function deleted
 - [X] Update Function update
 - [X] Update Function like
+- [X] Update Function table
+- [X] Update Function unique
