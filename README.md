@@ -228,3 +228,8 @@ PHP Drop column:
 ```php
 drop('table',['column']);
 ```
+SQL Drop Table 
+
+```sql
+DROP TABLE a,b;
+```
