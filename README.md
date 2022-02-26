@@ -152,6 +152,20 @@ insert into table (one,tow,there) values (?,?,?)
 ```
 **The content is then filled with prepare and bindValue**
 
+# SQL delete data
+`deleted(string $table ,$where = "None",string $other = null);`
+
+SQL:
+
+```sql
+DELETE FROM one WHERE p = 12
+```
+
+PHP :
+```php
+deleted('one',['p'=>12]);
+```
+
 # SQL update Example
 
 sql:
