@@ -41,6 +41,8 @@ $select = select('*','db',['id'=>10],'limit 3');
 
 OR
 
+```php
+
 ```
 
 execute :
