@@ -41,8 +41,8 @@ $select = select('*','db',['id'=>10],'limit 3');
 
 OR
 
-```php
-
+```sql
+select * from db where id = 10 coin >= 15
 ```
 
 execute :
