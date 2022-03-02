@@ -35,8 +35,13 @@ function select(string $select, string $db,$where = "None",string $other = null)
         $where_q = "1";
     } else if (gettype($where) == "array"){
         foreach($where as $key => $value){
+            if (gettype($value) == 'string' or gettype($value) == 'integer'){
             $a .= "$key = ? and ";
             $answer[] = $value;
+            } elseif (gettype($value) == 'array'){
+                     $a .= "$value[0] " . "$value[1] " . '? and ';
+                     $answer[] = $value[2];
+            }
         }
         $where_q = preg_replace("/ and(?=( \w+)?$)/", null, trim($a));
     } else {
@@ -59,13 +64,13 @@ function select(string $select, string $db,$where = "None",string $other = null)
         if ($execute['fetch'] == null){
             unset($execute['fetch']);
         }
+        
         return $execute;
     } catch(PDOException $error){
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
         return 0;
     }
 }
-
 function insert(string $table,array $array){
     global $pdo;
     $a = null;
