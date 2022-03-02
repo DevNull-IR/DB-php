@@ -66,3 +66,8 @@ __Fixed Bugs updates__
 - [X] Created Function Drop
 
 **You will no longer have an error from the database. All errors are stored in the `yourPrject\ErrorDB.log` path**
+
+
+# v3.1
+- [X] Fixed Bugs
+- [X] Update Function select
