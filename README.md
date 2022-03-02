@@ -48,7 +48,7 @@ select * from db where id = 10 coin >= 15
 PHP :
 
 ```php
-
+select('*','db',['id'=>10,['coin','>=',15]]);
 ```
 
 execute :
