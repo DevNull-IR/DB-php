@@ -1,19 +1,19 @@
 <?php
- $pdo = null;
+$pdo = null;
 
 function connect(string $dbname,string $username_db,string $password_db,string $host = 'localhost'){
-        global $pdo;
-        $Option = [
+    global $pdo;
+    $Option = [
         PDO::ATTR_PERSISTENT => TRUE,
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::MYSQL_ATTR_INIT_COMMAND =>'SET NAMES utf8',
         PDO::ATTR_EMULATE_PREPARES => false
     ];
-    
+
     try {
         $pdo = new PDO("mysql:host=". $host .";dbname=". $dbname .";charset=utf8", $username_db , $password_db , $Option ); // set and connect to db by pdo
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); // not hack :)
-        
+
     } catch (PDOException $error) {
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
         die("Error To Connected To Mysql");
