@@ -155,7 +155,7 @@ SELECT Orders.OrderID, Customers.CustomerName FROM Orders INNER JOIN Customers O
 ```
 
 
-PHP
+- PHP
 
 ```php
 select('Orders.OrderID, Customers.CustomerName','Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID');
@@ -163,19 +163,19 @@ select('Orders.OrderID, Customers.CustomerName','Orders INNER JOIN Customers ON 
 
 
 # SQL insert Example
-sql :
+- SQL :
 
 ```sql
 insert into table (one,tow,there) values ('one','tow','there')
 ```
 
-php :
+- php :
 ```php
 
 insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);
 
 ```
-execute => 0 or 1
+- **execute => 0 or 1**
 query `insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);` :
 ```sql
 insert into table (one,tow,there) values (?,?,?)
@@ -185,44 +185,44 @@ insert into table (one,tow,there) values (?,?,?)
 # SQL delete data
 `deleted(string $table ,$where = "None",string $other = null);`
 
-SQL:
+- SQL:
 
 ```sql
 DELETE FROM one WHERE p = 12
 ```
 
-PHP :
+- PHP:
 ```php
 deleted('one',['p'=>12]);
 ```
 
 # SQL update Example
 
-sql:
+- SQL:
 
 ```sql
 update tb set id = '12' where name = '14'
 ```
-PHP :
+- PHP :
 
 ```php
 update('tb',['id'=>12],['name'=>14]);
 ```
 execute : 0 or 1
-If execute is equal to 0, it means that the update has not been done
+__If execute is equal to 0, it means that the update has not been done__
 
 
 # SQL Created New Table 
 `table(string $table,$column);`
 
-sql :
+- SQL:
 
 ```sql
 CREATE TABLE accounts (
         id int
         );
 ```
-php :
+- php :
 ```php
 table('accounts',['id'=>'int']);
 ```
@@ -232,14 +232,15 @@ table('accounts',['id'=>'int']);
  
  `unique(string $table,$column);`
 
-SQL :
+- SQL :
 
 ```sql
 ALTER TABLE articles
     ADD UNIQUE (slug)
 ```
 
-php:
+- php:
+
 ```php
 
 unique('articles',['slug']);
@@ -249,13 +250,13 @@ unique('articles',['slug']);
 # SQL Set  primary Key
 `primary(string $table,$column);`
 
-SQL : 
+- SQL: 
 
 ```sql
 ALTER TABLE accounts
     ADD PRIMARY KEY (token);
 ```
-php : 
+- php : 
 ```php
 primary('accounts',['token']);
 ```
@@ -264,22 +265,22 @@ primary('accounts',['token']);
 
 `drop($table,array $columns = []);`
 
-SQL Drop column: 
+- SQL Drop column: 
 
 ```sql
 ALTER TABLE table
 DROP COLUMN column;
 ```
-PHP Drop column:
+- PHP Drop column:
 ```php
 drop('table',['column']);
 ```
-SQL Drop Table 
++ SQL Drop Table 
 
 ```sql
 DROP TABLE a,b;
 ```
-PHP Drop Table :
+- PHP Drop Table :
 
 ```php
 drop(['a','b']);
