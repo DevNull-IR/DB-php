@@ -127,7 +127,36 @@ OR
 ```sql 
 select * from db where column LIKE 'a%' and id <= 15
 ```
+- PHP:
 
+```php
+like('*','db',[
+       'column'=>"a%"
+    ],
+    [
+        [
+            'id','<=',15
+        ]
+    ]);
+```
+
+OR
+
+- SQL:
+
+```sql 
+select * from db where column LIKE 'a%' and id = 15
+```
+- PHP
+
+```php
+like('*','db',[
+       'column'=>"a%"
+    ],
+    [
+        'id'=>15
+    ]);
+```
 # MIN() Example
 
 - SQL
