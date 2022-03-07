@@ -82,3 +82,4 @@ __Fixed Bugs updates__
 
 - [X] Update Function like
 - [X] Update Function deleted
+- [X] Update Function
