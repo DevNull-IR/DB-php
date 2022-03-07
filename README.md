@@ -114,6 +114,11 @@ like('*','Customers',[
 ]);
 ```
 
+OR
+SQL:
+```sql 
+
+```
 
 # MIN() Example
 
