@@ -103,13 +103,15 @@ select('*','db');
 
 # SQL LIKE Examples
 
+- SQL
+
 ```sql
 SELECT * FROM Customers
 WHERE CustomerName LIKE 'a%';
 ```
 
 
-PHP 
+- PHP 
 
 This Update : 2.0
 ```php
@@ -128,13 +130,15 @@ select * from db where column LIKE 'a%' and id <= 15
 
 # MIN() Example
 
+- SQL
+
 ```sql
 SELECT MIN(Price) AS SmallestPrice
 FROM Products;
 ```
 
 
-PHP
+- PHP
 
 ```php
 select('MIN(Price) AS SmallestPrice','Products');
