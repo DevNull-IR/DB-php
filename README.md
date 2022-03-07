@@ -15,7 +15,8 @@ This Function :
 ```php
 connect('dbName','myuser','passworduser');
 ```
-Php : 
+- Php : 
+- 
 ```php
 
         $Option = [
@@ -29,6 +30,8 @@ Php :
 
 # SQL Select Examples
 
+- SQL
+- 
 ```sql
 select * from db where id = 10 limit 3
 ```
