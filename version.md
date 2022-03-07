@@ -79,3 +79,5 @@ __Fixed Bugs updates__
 - [X] Fixed All Bugs
 
 # v3.5
+
+- [X] Update Function like
