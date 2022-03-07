@@ -16,7 +16,7 @@ This Function :
 connect('dbName','myuser','passworduser');
 ```
 - Php : 
-- 
+
 ```php
 
         $Option = [
@@ -31,30 +31,30 @@ connect('dbName','myuser','passworduser');
 # SQL Select Examples
 
 - SQL
-- 
+
 ```sql
 select * from db where id = 10 limit 3
 ```
 
-PHP :
+- PHP :
 
 ```php
 $select = select('*','db',['id'=>10],'limit 3');
 ```
 
-OR
+**OR**
 
 ```sql
 select * from db where id = 10 coin >= 15
 ```
 
-PHP :
+- PHP :
 
 ```php
 select('*','db',['id'=>10,['coin','>=',15]]);
 ```
 
-execute :
+- execute :
 
 ![](https://raw.githubusercontent.com/DevNull-IR/DB-php/main/src-document/Capture.PNG)
 
@@ -91,11 +91,12 @@ array (size=2)
           'grade' => int 0
           'Download' => int 0
 ```
+- SQL
 
 ```sql 
 select * from db
 ```
-PHP
+- PHP
 ```php
 select('*','db');
 ```
