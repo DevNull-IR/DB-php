@@ -74,3 +74,5 @@ __Fixed Bugs updates__
 
 # v3.2
 - [X] Fixed Bugs
+
+# From version 3.2 to version 3.5
