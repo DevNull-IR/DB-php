@@ -71,3 +71,6 @@ __Fixed Bugs updates__
 # v3.1
 - [X] Fixed Bugs
 - [X] Update Function select
+
+# v3.2
+- [X] Fixed Bugs
