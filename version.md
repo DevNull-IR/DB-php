@@ -81,3 +81,4 @@ __Fixed Bugs updates__
 # v3.5
 
 - [X] Update Function like
+- [X] Update Function deleted
