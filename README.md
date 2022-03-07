@@ -115,7 +115,9 @@ like('*','Customers',[
 ```
 
 OR
-SQL:
+
+- SQL:
+
 ```sql 
 select * from db where column LIKE 'a%' and id <= 15
 ```
