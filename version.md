@@ -84,3 +84,5 @@ __Fixed Bugs updates__
 - [X] Update Function deleted
 - [X] Update Function Update
 - [X] Update Function
+- [X] Fixed All Bugs
+- [X] Updated And Security
