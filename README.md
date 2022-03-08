@@ -318,4 +318,13 @@ drop(['a','b']);
 
 # Update version 3.5
 
-   *
+   # Where 
+      - select
+      - update
+      - like
+      - delete
+              # Description
+                  - If you enter another presentation in the presentation, you can (mandatory) send three values to the second presentation
+                  - First value (first parameter): The name of the column in the table specified in the connect function
+                  - Second value (second parameter): Enter the type Operators to check
+                  - Third value (third parameter): value value to check 
