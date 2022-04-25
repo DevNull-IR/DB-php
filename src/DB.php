@@ -1,6 +1,10 @@
 <?php
+/**
+ * Author: DevNull at PreCode
+ *  Author Site: devnull-ali.ir
+ *  Version: 4.0
+ */
 $pdo = null;
-
 function connect(string $dbname,string $username_db,string $password_db,string $host = 'localhost'){
     global $pdo;
     $Option = [
@@ -68,7 +72,7 @@ function select(string $select, string $db,$where = "None",string $other = null)
         return $execute;
     } catch(PDOException $error){
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
-        return 0;
+        return false;
     }
 }
 
@@ -90,11 +94,11 @@ function insert(string $table,array $array){
         for($i = 1;$i<count($array) +1; $i++){
             $result->bindValue($i,$answer[$i -1]);
         }
-        var_dump($result->execute());
+        $result->execute();
         return $result->rowCount();
     } catch(PDOException $error){
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
-        return 0;
+        return false;
     }
 }
 
@@ -136,7 +140,7 @@ function deleted(string $table ,$where = "None",string $other = null){
         return $result->rowCount();
     } catch(PDOException $error){
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
-        return 0;
+        return false;
     }
 }
 
@@ -186,11 +190,11 @@ function update(string $db,$update,$where = "None",string $other = null){
             return $result->rowCount();
         }
         else {
-            return 0;
+            return false;
         }
     } catch(PDOException $error){
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
-        return 0;
+        return false;
     }
 
 }
@@ -234,7 +238,7 @@ function like(string $select,string $table,$like,$where = null){
         return $execute;
     } catch(PDOException $error){
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
-        return 0;
+        return false;
     }
 }
 
@@ -254,11 +258,11 @@ function table(string $table,$column){
     try {
         $result = $pdo->prepare($query);
         if($result->execute()){
-            return 1;
-        } else return 0;
+            return true;
+        } else return false;
     } catch(PDOException $error){
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
-        return 0;
+        return false;
     }
 }
 
@@ -276,13 +280,13 @@ function unique(string $table,$column){
     try {
         $result = $pdo->prepare($q);
         if ($result->execute()) {
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
     } catch(PDOException $error){
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
-        return 0;
+        return false;
     }
 }
 
@@ -295,18 +299,17 @@ function primary(string $table,$column){
         }
     }
     $a = preg_replace("/,(?=( \w+)?$)/", null, trim($a));
-    $q = "ALTER TABLE $table
-    ADD PRIMARY KEY ($a);";
+    $q = "ALTER TABLE `{$table}` ADD PRIMARY KEY (`{$a}`);";
     try {
         $result = $pdo->prepare($q);
         if ($result->execute()){
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
     } catch(PDOException $error){
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
-        return 0;
+        return false;
     }
 }
 
@@ -331,12 +334,30 @@ $a;";
     try {
         $result = $pdo->prepare($q);
         if ($result->execute()) {
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
     } catch(PDOException $error){
         file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
-        return 0;
+        return false;
+    }
+}
+
+function autoIncrement(string $table, string $column){
+    global $pdo;
+    try {
+        primary($table, ["$column"]);
+        $a= "ALTER TABLE `{$table}` CHANGE `{$column}` `{$column}` BIGINT NOT NULL AUTO_INCREMENT;";
+        $result = $pdo->prepare($a);
+        $result = $result->execute();
+        if ($result){
+            return true;
+        }else{
+            return false;
+        }
+    }catch(PDOException $error){
+        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+        return false;
     }
 }
