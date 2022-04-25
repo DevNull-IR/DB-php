@@ -1,7 +1,3 @@
-# Update 
-
-**🔥 The biggest update ever**
-
 # DB-php
 Free Functions To Connect To The Database ( Mysql ) For Php Programmers
 
@@ -14,6 +10,10 @@ Free Functions To Connect To The Database ( Mysql ) For Php Programmers
 This Function : 
 ```php
 connect('dbName','myuser','passworduser');
+```
+**class**
+```php
+$db= new db(string $dbname,string $username_db,string $password_db,string $host = 'localhost');
 ```
 - Php : 
 
@@ -315,7 +315,23 @@ DROP TABLE a,b;
 drop(['a','b']);
 ```
 
+# Set AUTO_INCREMENT
 
+`autoIncrement(string $table, string $column);`
+
+Sql : 
+`ALTER TABLE `TableNabe` CHANGE `columnName` `columnName` BIGINT NOT NULL AUTO_INCREMENT;`
+
+PHP:
+
+```php
+autoIncrement('TableNabe','columnName');
+```
+
+PHP Classes:
+```php
+$db->autoIncrement('TableNabe','columnName');
+```
 # Update version 3.5
 
    # Where 
