@@ -204,7 +204,7 @@ insert into table (one,tow,there) values ('one','tow','there')
 insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);
 
 ```
-- **execute => 0 or 1**
+- **execute => false or true**
 query `insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);` :
 ```sql
 insert into table (one,tow,there) values (?,?,?)
@@ -237,8 +237,8 @@ update tb set id = '12' where name = '14'
 ```php
 update('tb',['id'=>12],['name'=>14]);
 ```
-execute : 0 or 1
-__If execute is equal to 0, it means that the update has not been done__
+execute : false or true
+__If execute is equal to false, it means that the update has not been done__
 
 
 # SQL Created New Table 
@@ -255,7 +255,7 @@ CREATE TABLE accounts (
 ```php
 table('accounts',['id'=>'int']);
 ```
- execute => 0 or 1
+ execute => false or true
  
  # SQL Set unique column
  
