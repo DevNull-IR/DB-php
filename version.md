@@ -86,3 +86,10 @@ __Fixed Bugs updates__
 - [X] Update Function
 - [X] Fixed All Bugs
 - [X] Updated Security
+
+# v4.0
+
+- [X] Update Function deleted
+- [X] Create Function autoIncrement
+- [X] Added Classes File
+- [X] Fixed All Bugs
