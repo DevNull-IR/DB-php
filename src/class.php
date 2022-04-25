@@ -5,7 +5,7 @@
  *  Version: 4.0
  */
 
-$pd = null;
+$pdo = null;
 class db{
     function __construct(string $dbname,string $username_db,string $password_db,string $host = 'localhost'){
         global $pdo;
@@ -349,7 +349,7 @@ $a;";
     function autoIncrement(string $table, string $column){
         global $pdo;
         try {
-            primary($table, ["$column"]);
+            $this->primary($table, ["$column"]);
             $a= "ALTER TABLE `{$table}` CHANGE `{$column}` `{$column}` BIGINT NOT NULL AUTO_INCREMENT;";
             $result = $pdo->prepare($a);
             $result = $result->execute();
