@@ -5,7 +5,8 @@
  *  Version: 4.0.
  */
 $pdo = null;
-function connect(string $dbname, string $username_db, string $password_db, string $host = 'localhost'){
+function connect(string $dbname, string $username_db, string $password_db, string $host = 'localhost')
+{
     global $pdo;
     $Option = [
         PDO::ATTR_PERSISTENT         => TRUE,
@@ -24,19 +25,20 @@ function connect(string $dbname, string $username_db, string $password_db, strin
 
 }
 
-function select(string $select, string $db, $where = "None", string $other = null){
+function select(string $select, string $db, $where = "None", string $other = null)
+{
     global $pdo;
     $a = null;
     $answer = [];
     if (isset($other) && !empty($other)) {
         $other = trim($other);
-        $other = ' ' . $other;
+        $other = ' '.$other;
     } else {
         $other = null;
     }
     if ($where === 'None') {
         $where_q = '1';
-    } else if (gettype($where) == 'array') {
+    } elseif (gettype($where) == 'array') {
         foreach($where as $key => $value){
             if (gettype($value) == 'string' or gettype($value) == 'integer'){
                 $a .= "$key = ? and ";
@@ -46,7 +48,7 @@ function select(string $select, string $db, $where = "None", string $other = nul
                 $answer[] = $value[2];
             }
         }
-        $where_q = preg_replace("/ and(?=( \w+)?$)/", null, trim($a));
+        $where_q = preg_replace('/ and(?=( \w+)?$)/', null, trim($a));
     } else {
         $where_q = "1";
     }
@@ -75,7 +77,8 @@ function select(string $select, string $db, $where = "None", string $other = nul
     }
 }
 
-function insert(string $table,array $array){
+function insert(string $table,array $array)
+{
     global $pdo;
     $a = null;
     $b = null;
@@ -101,7 +104,8 @@ function insert(string $table,array $array){
     }
 }
 
-function deleted(string $table ,$where = "None",string $other = null){
+function deleted(string $table ,$where = "None",string $other = null)
+{
     global $pdo;
     $a = null;
     if (isset($other) && !empty($other)){
