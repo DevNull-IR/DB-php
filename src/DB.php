@@ -19,7 +19,7 @@ function connect(string $dbname, string $username_db, string $password_db, strin
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); // not hack :)
     } catch (PDOException $error) {
         file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
-        die('Error To Connected To Mysql');
+        exit('Error To Connected To Mysql');
     }
 
 }
