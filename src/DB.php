@@ -2,42 +2,41 @@
 /**
  * Author: DevNull at PreCode
  *  Author Site: devnull-ali.ir
- *  Version: 4.0
+ *  Version: 4.0.
  */
 $pdo = null;
-function connect(string $dbname,string $username_db,string $password_db,string $host = 'localhost'){
+function connect(string $dbname, string $username_db, string $password_db, string $host = 'localhost'){
     global $pdo;
     $Option = [
-        PDO::ATTR_PERSISTENT => TRUE,
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::MYSQL_ATTR_INIT_COMMAND =>'SET NAMES utf8',
-        PDO::ATTR_EMULATE_PREPARES => false
+        PDO::ATTR_PERSISTENT         => TRUE,
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+        PDO::ATTR_EMULATE_PREPARES   => false
     ];
 
     try {
-        $pdo = new PDO("mysql:host=". $host .";dbname=". $dbname .";charset=utf8", $username_db , $password_db , $Option ); // set and connect to db by pdo
+        $pdo = new PDO('mysql:host='. $host .';dbname='. $dbname .';charset=utf8', $username_db, $password_db, $Option ); // set and connect to db by pdo
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); // not hack :)
-
     } catch (PDOException $error) {
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
-        die("Error To Connected To Mysql");
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+        die('Error To Connected To Mysql');
     }
 
 }
 
-function select(string $select, string $db,$where = "None",string $other = null){
+function select(string $select, string $db, $where = "None", string $other = null){
     global $pdo;
     $a = null;
     $answer = [];
-    if (isset($other) && !empty($other)){
+    if (isset($other) && !empty($other)) {
         $other = trim($other);
-        $other = " $other";
+        $other = ' ' . $other;
     } else {
         $other = null;
     }
-    if ($where === "None"){
-        $where_q = "1";
-    } else if (gettype($where) == "array"){
+    if ($where === 'None') {
+        $where_q = '1';
+    } else if (gettype($where) == 'array') {
         foreach($where as $key => $value){
             if (gettype($value) == 'string' or gettype($value) == 'integer'){
                 $a .= "$key = ? and ";
