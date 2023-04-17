@@ -2,7 +2,6 @@
 
 include_once '../src/DB.php';
 
-
-// exsample 
+// exsample
 
 connect('dbName', 'username');

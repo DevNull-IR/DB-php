@@ -5,161 +5,173 @@
  *  Version: 4.0.
  */
 $pdo = null;
-function connect(string $dbname, string $username_db, string $password_db, string $host = 'localhost'){
+function connect(string $dbname, string $username_db, string $password_db, string $host = 'localhost')
+{
     global $pdo;
     $Option = [
-        PDO::ATTR_PERSISTENT         => TRUE,
+        PDO::ATTR_PERSISTENT         => true,
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-        PDO::ATTR_EMULATE_PREPARES   => false
+        PDO::ATTR_EMULATE_PREPARES   => false,
     ];
 
     try {
-        $pdo = new PDO('mysql:host='. $host .';dbname='. $dbname .';charset=utf8', $username_db, $password_db, $Option ); // set and connect to db by pdo
+        $pdo = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset=utf8', $username_db, $password_db, $Option); // set and connect to db by pdo
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); // not hack :)
     } catch (PDOException $error) {
         file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
-        die('Error To Connected To Mysql');
+        exit('Error To Connected To Mysql');
     }
-
 }
 
-function select(string $select, string $db, $where = "None", string $other = null){
+function select(string $select, string $db, $where = 'None', string $other = null)
+{
     global $pdo;
     $a = null;
     $answer = [];
     if (isset($other) && !empty($other)) {
         $other = trim($other);
-        $other = ' ' . $other;
+        $other = ' '.$other;
     } else {
         $other = null;
     }
     if ($where === 'None') {
         $where_q = '1';
-    } else if (gettype($where) == 'array') {
-        foreach($where as $key => $value){
-            if (gettype($value) == 'string' or gettype($value) == 'integer'){
+    } elseif (gettype($where) == 'array') {
+        foreach ($where as $key => $value) {
+            if (gettype($value) == 'string' or gettype($value) == 'integer') {
                 $a .= "$key = ? and ";
                 $answer[] = $value;
-            } elseif (gettype($value) == 'array'){
-                $a .= "$value[0] " . "$value[1] " . '? and ';
+            } elseif (gettype($value) == 'array') {
+                $a .= "$value[0] "."$value[1] ".'? and ';
                 $answer[] = $value[2];
             }
         }
         $where_q = preg_replace("/ and(?=( \w+)?$)/", null, trim($a));
     } else {
-        $where_q = "1";
+        $where_q = '1';
     }
-    $query = 'select ' . $select . ' from ' . $db . ' where ' . $where_q . $other;
+    $query = 'select '.$select.' from '.$db.' where '.$where_q.$other;
+
     try {
         $result = $pdo->prepare($query);
-        if (gettype($where) == "array"){
-            for($i = 1;$i<count($where) +1; $i++){
-                $result->bindValue($i,$answer[$i -1]);
+        if (gettype($where) == 'array') {
+            for ($i = 1; $i < count($where) + 1; $i++) {
+                $result->bindValue($i, $answer[$i - 1]);
             }
         }
         $result->execute();
         $execute = [
-            'count' => $result->rowCount(),
+            'count'    => $result->rowCount(),
             'fetchAll' => $result->fetchall(PDO::FETCH_ASSOC),
         ];
         $execute['fetch'] = $execute['fetchAll'][0] ?? null;
-        if ($execute['fetch'] == null){
+        if ($execute['fetch'] == null) {
             unset($execute['fetch']);
         }
 
         return $execute;
-    } catch(PDOException $error){
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+    } catch(PDOException $error) {
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+
         return false;
     }
 }
 
-function insert(string $table,array $array){
+function insert(string $table, array $array)
+{
     global $pdo;
     $a = null;
     $b = null;
     $answer = [];
-    foreach($array as $key=>$value){
-        $a .= " ? ,";
+    foreach ($array as $key=>$value) {
+        $a .= ' ? ,';
         $b .= " $key ,";
         $answer[] = $value;
     }
-    $a = preg_replace('/,(?=( \w+)?$)/',null,$a);
-    $b = preg_replace('/,(?=( \w+)?$)/',null,$b);
-    $query = 'INSERT INTO ' . $table .'( ' . $b . ' ) VALUES (' . $a . ')';
+    $a = preg_replace('/,(?=( \w+)?$)/', null, $a);
+    $b = preg_replace('/,(?=( \w+)?$)/', null, $b);
+    $query = 'INSERT INTO '.$table.'( '.$b.' ) VALUES ('.$a.')';
+
     try {
         $result = $pdo->prepare($query);
-        for($i = 1;$i<count($array) +1; $i++){
-            $result->bindValue($i,$answer[$i -1]);
+        for ($i = 1; $i < count($array) + 1; $i++) {
+            $result->bindValue($i, $answer[$i - 1]);
         }
         $result->execute();
+
         return $result->rowCount();
-    } catch(PDOException $error){
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+    } catch(PDOException $error) {
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+
         return false;
     }
 }
 
-function deleted(string $table ,$where = "None",string $other = null){
+function deleted(string $table, $where = 'None', string $other = null)
+{
     global $pdo;
     $a = null;
-    if (isset($other) && !empty($other)){
+    if (isset($other) && !empty($other)) {
         $other = trim($other);
         $other = " $other";
     } else {
         $other = null;
     }
-    if ($where === "None"){
-        $where_q = "1";
-    } else if (gettype($where) == "array"){
-        foreach($where as $key => $value){
-            if (gettype($value) == 'string' or gettype($value) == 'integer'){
+    if ($where === 'None') {
+        $where_q = '1';
+    } elseif (gettype($where) == 'array') {
+        foreach ($where as $key => $value) {
+            if (gettype($value) == 'string' or gettype($value) == 'integer') {
                 $a .= "$key = ? and ";
                 $answer[] = $value;
-            } elseif (gettype($value) == 'array'){
-                $a .= "$value[0] " . "$value[1] " . '? and ';
+            } elseif (gettype($value) == 'array') {
+                $a .= "$value[0] "."$value[1] ".'? and ';
                 $answer[] = $value[2];
             }
         }
         $where_q = preg_replace("/ and(?=( \w+)?$)/", null, trim($a));
     } else {
-        $where_q = "1";
+        $where_q = '1';
     }
     $query = "DELETE FROM $table WHERE $where_q $other";
     $query = trim($query);
+
     try {
         $result = $pdo->prepare($query);
-        if (gettype($where) == "array"){
-            for($i = 1;$i<count($where) +1; $i++){
-                $result->bindValue($i,$answer[$i -1]);
+        if (gettype($where) == 'array') {
+            for ($i = 1; $i < count($where) + 1; $i++) {
+                $result->bindValue($i, $answer[$i - 1]);
             }
         }
         $result->execute();
+
         return $result->rowCount();
-    } catch(PDOException $error){
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+    } catch(PDOException $error) {
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+
         return false;
     }
 }
 
-function update(string $db,$update,$where = "None",string $other = null){
+function update(string $db, $update, $where = 'None', string $other = null)
+{
     global $pdo;
     $answer = [];
     $a = null;
     $answer_where = [];
     $b = null;
-    foreach($update as $key => $value){
+    foreach ($update as $key => $value) {
         $a .= "$key = ? , ";
         $answer[] = $value;
     }
-    if (gettype($where) == "array"){
-        foreach($where as $key => $value){
-            if (gettype($value) == 'string' or gettype($value) == 'integer'){
+    if (gettype($where) == 'array') {
+        foreach ($where as $key => $value) {
+            if (gettype($value) == 'string' or gettype($value) == 'integer') {
                 $b .= "$key = ? and ";
                 $answer_where[] = $value;
-            } elseif (gettype($value) == 'array'){
-                $b .= "$value[0] " . "$value[1] " . '? and ';
+            } elseif (gettype($value) == 'array') {
+                $b .= "$value[0] "."$value[1] ".'? and ';
                 $answer_where[] = $value[2];
             }
         }
@@ -168,84 +180,89 @@ function update(string $db,$update,$where = "None",string $other = null){
         $b = 1;
     }
     $a = preg_replace("/ ,(?=( \w+)?$)/", null, trim($a));
-    if (isset($other) && !empty($other)){
+    if (isset($other) && !empty($other)) {
         $other = " $other";
     }
-    $Sql = "UPDATE {$db} SET {$a} WHERE " . $b . $other;
+    $Sql = "UPDATE {$db} SET {$a} WHERE ".$b.$other;
     $Sql = trim($Sql);
+
     try {
         $result = $pdo->prepare($Sql);
-        if (gettype($update) == "array"){
-            for($i = 1; $i < count($update) + 1; $i++){
-                $result->bindValue($i,$answer[$i -1]);
+        if (gettype($update) == 'array') {
+            for ($i = 1; $i < count($update) + 1; $i++) {
+                $result->bindValue($i, $answer[$i - 1]);
             }
         }
-        if (gettype($where) == "array"){
-            for($i = count($update) + 1; $i < count($where) + count($update) + 1; $i++){
-                $result->bindValue($i,$answer_where[$i -count($update)-1]);
+        if (gettype($where) == 'array') {
+            for ($i = count($update) + 1; $i < count($where) + count($update) + 1; $i++) {
+                $result->bindValue($i, $answer_where[$i - count($update) - 1]);
             }
         }
-        if ($result->execute()){
+        if ($result->execute()) {
             return $result->rowCount();
-        }
-        else {
+        } else {
             return false;
         }
-    } catch(PDOException $error){
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+    } catch(PDOException $error) {
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+
         return false;
     }
-
 }
 
-function like(string $select,string $table,$like,$where = null){
+function like(string $select, string $table, $like, $where = null)
+{
     global $pdo;
     $a = null;
-    if (gettype($like) == 'array'){
-        foreach($like as $key=>$value){
+    if (gettype($like) == 'array') {
+        foreach ($like as $key=>$value) {
             $a .= "$key like ? and ";
             $answer[] = $value;
         }
     }
-    if (gettype($where) == 'array'){
-        foreach($where as $key=>$value){
-            if (gettype($value) == 'string' or gettype($value) == 'integer'){
+    if (gettype($where) == 'array') {
+        foreach ($where as $key=>$value) {
+            if (gettype($value) == 'string' or gettype($value) == 'integer') {
                 $a .= "$key = ? and ";
                 $answer[] = $value;
-            } elseif (gettype($value) == 'array'){
-                $a .= "$value[0] " . "$value[1] " . '? and ';
+            } elseif (gettype($value) == 'array') {
+                $a .= "$value[0] "."$value[1] ".'? and ';
                 $answer[] = $value[2];
             }
         }
     }
     $a = preg_replace("/ and(?=( \w+)?$)/i", null, trim($a));
     $a = "select $select from $table where $a";
+
     try {
         $result = $pdo->prepare($a);
-        for($i = 1;$i < count($answer) + 1;$i++){
-            $result->bindValue($i,$answer[$i - 1]);
+        for ($i = 1; $i < count($answer) + 1; $i++) {
+            $result->bindValue($i, $answer[$i - 1]);
         }
         $result->execute();
         $execute = [
-            'count' => $result->rowCount(),
+            'count'    => $result->rowCount(),
             'fetchAll' => $result->fetchall(PDO::FETCH_ASSOC),
         ];
         $execute['fetch'] = $execute['fetchAll'][0] ?? null;
-        if ($execute['fetch'] == null){
+        if ($execute['fetch'] == null) {
             unset($execute['fetch']);
         }
+
         return $execute;
-    } catch(PDOException $error){
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+    } catch(PDOException $error) {
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+
         return false;
     }
 }
 
-function table(string $table,$column){
+function table(string $table, $column)
+{
     global $pdo;
     $a = null;
-    if (gettype($column) == 'array'){
-        foreach($column as $key=>$value){
+    if (gettype($column) == 'array') {
+        foreach ($column as $key=>$value) {
             $a .= "$key $value,
         ";
         }
@@ -254,28 +271,34 @@ function table(string $table,$column){
     $query = "CREATE TABLE $table (
         $a
         )";
+
     try {
         $result = $pdo->prepare($query);
-        if($result->execute()){
+        if ($result->execute()) {
             return true;
-        } else return false;
-    } catch(PDOException $error){
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+        } else {
+            return false;
+        }
+    } catch(PDOException $error) {
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+
         return false;
     }
 }
 
-function unique(string $table,$column){
+function unique(string $table, $column)
+{
     global $pdo;
     $a = null;
-    if (gettype($column) == 'array'){
-        foreach($column as $key=>$value){
+    if (gettype($column) == 'array') {
+        foreach ($column as $key=>$value) {
             $a .= "$value,";
         }
     }
     $a = preg_replace("/,(?=( \w+)?$)/", null, trim($a));
     $q = "ALTER TABLE $table
     ADD UNIQUE ($a);";
+
     try {
         $result = $pdo->prepare($q);
         if ($result->execute()) {
@@ -283,53 +306,59 @@ function unique(string $table,$column){
         } else {
             return false;
         }
-    } catch(PDOException $error){
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+    } catch(PDOException $error) {
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+
         return false;
     }
 }
 
-function primary(string $table,$column){
+function primary(string $table, $column)
+{
     global $pdo;
     $a = null;
-    if (gettype($column) == 'array'){
-        foreach($column as $key=>$value){
+    if (gettype($column) == 'array') {
+        foreach ($column as $key=>$value) {
             $a .= "$value,";
         }
     }
     $a = preg_replace("/,(?=( \w+)?$)/", null, trim($a));
     $q = "ALTER TABLE `{$table}` ADD PRIMARY KEY (`{$a}`);";
+
     try {
         $result = $pdo->prepare($q);
-        if ($result->execute()){
+        if ($result->execute()) {
             return true;
         } else {
             return false;
         }
-    } catch(PDOException $error){
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+    } catch(PDOException $error) {
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+
         return false;
     }
 }
 
-function drop($table,array $columns = []){
+function drop($table, array $columns = [])
+{
     global $pdo;
     $a = null;
     $q = null;
-    if (gettype($table) == "array"){
-        foreach($table as $key=>$value){
+    if (gettype($table) == 'array') {
+        foreach ($table as $key=>$value) {
             $a .= " $value,";
         }
         $a = preg_replace("/,(?=( \w+)?$)/", null, trim($a));
         $q = "DROP TABLE $a;";
     } else {
-        foreach($columns as $key=>$value){
+        foreach ($columns as $key=>$value) {
             $a .= "DROP COLUMN $value,";
         }
         $a = preg_replace("/,(?=( \w+)?$)/", null, trim($a));
         $q = "ALTER TABLE $table
 $a;";
     }
+
     try {
         $result = $pdo->prepare($q);
         if ($result->execute()) {
@@ -337,26 +366,30 @@ $a;";
         } else {
             return false;
         }
-    } catch(PDOException $error){
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+    } catch(PDOException $error) {
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+
         return false;
     }
 }
 
-function autoIncrement(string $table, string $column){
+function autoIncrement(string $table, string $column)
+{
     global $pdo;
+
     try {
         primary($table, ["$column"]);
-        $a= "ALTER TABLE `{$table}` CHANGE `{$column}` `{$column}` BIGINT NOT NULL AUTO_INCREMENT;";
+        $a = "ALTER TABLE `{$table}` CHANGE `{$column}` `{$column}` BIGINT NOT NULL AUTO_INCREMENT;";
         $result = $pdo->prepare($a);
         $result = $result->execute();
-        if ($result){
+        if ($result) {
             return true;
-        }else{
+        } else {
             return false;
         }
-    }catch(PDOException $error){
-        file_put_contents("ErrorDB.log",$error->getMessage().PHP_EOL,8);
+    } catch(PDOException $error) {
+        file_put_contents('ErrorDB.log', $error->getMessage().PHP_EOL, 8);
+
         return false;
     }
 }
