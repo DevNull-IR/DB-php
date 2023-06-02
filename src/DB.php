@@ -107,7 +107,6 @@ class DB
      */
     public function insert(string $table, array $array): bool|int
     {
-
         $a = null;
         $b = null;
         $answer = [];
@@ -408,7 +407,6 @@ class DB
      */
     public function drop($table, array $columns = []): bool
     {
-
         $a = null;
         $q = null;
         if (gettype($table) == 'array') {

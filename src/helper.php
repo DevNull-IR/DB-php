@@ -63,7 +63,6 @@ if (function_exists('connect') && !function_exists('deleted')) {
 }
 
 if (function_exists('connect') && !function_exists('update')) {
-
     /**
      * @param DB               $connection
      * @param string           $db
@@ -90,7 +89,6 @@ if (function_exists('connect') && !function_exists('like')) {
      * @return array|bool|PDO
      */
     function like(DB $connection, string $select, string $table, $like, $where = null): array|bool|PDO
-
     {
         return $connection->like($select, $table, $like, $where);
     }
@@ -153,7 +151,6 @@ if (function_exists('connect') && !function_exists('drop')) {
 }
 
 if (function_exists('connect') && !function_exists('autoIncrement')) {
-
     /**
      * @param DB     $connection
      * @param string $table
