@@ -248,7 +248,6 @@ class DB
 
             return false;
         }
-
     }
 
     /**

@@ -47,7 +47,6 @@ if (function_exists('connect') && !function_exists('insert')) {
 }
 
 if (function_exists('connect') && !function_exists('deleted')) {
-
     /**
      * @param DB               $connection
      * @param string           $table
