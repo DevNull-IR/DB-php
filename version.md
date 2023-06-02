@@ -43,7 +43,7 @@ __Fixed Bugs updates__
 
 # v2.4 
 
-- [X] Update Documention
+- [X] Update Documentation
 - [X] Fixed All Bugs
 
 # From version 2.4 to version 3.0
