@@ -1,6 +1,5 @@
 <?php
 
-
 use DevNull\DB\DB;
 
 if (!function_exists('connect')) {
@@ -9,6 +8,7 @@ if (!function_exists('connect')) {
      * @param string $username_db
      * @param string $password_db
      * @param string $host
+     *
      * @return DB
      */
     function connect(string $dbname, string $username_db, string $password_db, string $host = 'localhost'): DB
@@ -18,14 +18,15 @@ if (!function_exists('connect')) {
 }
 if (function_exists('connect') && !function_exists('select')) {
     /**
-     * @param DB $connection
-     * @param string $select
-     * @param string $db
+     * @param DB               $connection
+     * @param string           $select
+     * @param string           $db
      * @param string|array|int $where
-     * @param string|null $other
+     * @param string|null      $other
+     *
      * @return bool|array
      */
-    function select(DB $connection, string $select, string $db, string|array|int $where = "None", string $other = null): bool|array
+    function select(DB $connection, string $select, string $db, string|array|int $where = 'None', string $other = null): bool|array
     {
         return $connection->select($select, $db, $where, $other);
     }
@@ -33,9 +34,10 @@ if (function_exists('connect') && !function_exists('select')) {
 
 if (function_exists('connect') && !function_exists('insert')) {
     /**
-     * @param DB $connection
+     * @param DB     $connection
      * @param string $table
-     * @param array $array
+     * @param array  $array
+     *
      * @return bool|int
      */
     function insert(DB $connection, string $table, array $array): bool|int
@@ -47,13 +49,14 @@ if (function_exists('connect') && !function_exists('insert')) {
 if (function_exists('connect') && !function_exists('deleted')) {
 
     /**
-     * @param DB $connection
-     * @param string $table
+     * @param DB               $connection
+     * @param string           $table
      * @param string|array|int $where
-     * @param string|null $other
+     * @param string|null      $other
+     *
      * @return bool|int
      */
-    function deleted(DB $connection, string $table, string|array|int $where = "None", string $other = null): bool|int
+    function deleted(DB $connection, string $table, string|array|int $where = 'None', string $other = null): bool|int
     {
         return $connection->deleted($table, $where, $other);
     }
@@ -62,14 +65,15 @@ if (function_exists('connect') && !function_exists('deleted')) {
 if (function_exists('connect') && !function_exists('update')) {
 
     /**
-     * @param DB $connection
-     * @param string $db
-     * @param $update
+     * @param DB               $connection
+     * @param string           $db
+     * @param                  $update
      * @param string|array|int $where
-     * @param string|null $other
+     * @param string|null      $other
+     *
      * @return bool|int
      */
-    function update(DB $connection, string $db, $update, string|array|int $where = "None", string $other = null): bool|int
+    function update(DB $connection, string $db, $update, string|array|int $where = 'None', string $other = null): bool|int
     {
         return $connection->update($db, $update, $where, $other);
     }
@@ -77,11 +81,12 @@ if (function_exists('connect') && !function_exists('update')) {
 
 if (function_exists('connect') && !function_exists('like')) {
     /**
-     * @param DB $connection
+     * @param DB     $connection
      * @param string $select
      * @param string $table
-     * @param $like
-     * @param null $where
+     * @param        $like
+     * @param null   $where
+     *
      * @return array|bool|PDO
      */
     function like(DB $connection, string $select, string $table, $like, $where = null): array|bool|PDO
@@ -93,9 +98,10 @@ if (function_exists('connect') && !function_exists('like')) {
 
 if (function_exists('connect') && !function_exists('table')) {
     /**
-     * @param DB $connection
+     * @param DB     $connection
      * @param string $table
-     * @param $column
+     * @param        $column
+     *
      * @return bool
      */
     function table(DB $connection, string $table, $column): bool
@@ -106,9 +112,10 @@ if (function_exists('connect') && !function_exists('table')) {
 
 if (function_exists('connect') && !function_exists('unique')) {
     /**
-     * @param DB $connection
+     * @param DB     $connection
      * @param string $table
-     * @param $column
+     * @param        $column
+     *
      * @return bool
      */
     function unique(DB $connection, string $table, $column): bool
@@ -119,9 +126,10 @@ if (function_exists('connect') && !function_exists('unique')) {
 
 if (function_exists('connect') && !function_exists('primary')) {
     /**
-     * @param DB $connection
+     * @param DB     $connection
      * @param string $table
-     * @param $column
+     * @param        $column
+     *
      * @return bool
      */
     function primary(DB $connection, string $table, $column): bool
@@ -132,9 +140,10 @@ if (function_exists('connect') && !function_exists('primary')) {
 
 if (function_exists('connect') && !function_exists('drop')) {
     /**
-     * @param DB $connection
-     * @param $table
+     * @param DB    $connection
+     * @param       $table
      * @param array $columns
+     *
      * @return bool
      */
     function drop(DB $connection, $table, array $columns = []): bool
@@ -146,9 +155,10 @@ if (function_exists('connect') && !function_exists('drop')) {
 if (function_exists('connect') && !function_exists('autoIncrement')) {
 
     /**
-     * @param DB $connection
+     * @param DB     $connection
      * @param string $table
      * @param string $column
+     *
      * @return bool
      */
     function autoIncrement(DB $connection, string $table, string $column): bool
