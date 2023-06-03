@@ -2,7 +2,7 @@
 
 Free Functions To Connect To The Database ( Mysql ) For Php Programmers
 
-**This Version : 4.0**
+**This Version : 5.0**
 
 # connect to database
 
@@ -17,7 +17,7 @@ $cn = connect('dbName','myuser','passworduser');
 **class**
 
 ```php
-$db= new db(string $dbname,string $username_db,string $password_db,string $host = 'localhost');
+$db = new db(string $dbname,string $username_db,string $password_db,string $host = 'localhost');
 ```
 
 - Php :
