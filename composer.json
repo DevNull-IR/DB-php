@@ -1,0 +1,25 @@
+{
+  "name": "devnull-ir/db-php",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dev Null",
+      "email": "alishahbazpor110@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "ext-pdo": "*"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "DevNull\\DB\\": "src/"
+    },
+    "files": [
+      "src/helper.php"
+    ]
+  }
+}
