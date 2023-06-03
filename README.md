@@ -1,4 +1,5 @@
 # DB-php
+
 Free Functions To Connect To The Database ( Mysql ) For Php Programmers
 
 **This Version : 4.0**
@@ -7,15 +8,19 @@ Free Functions To Connect To The Database ( Mysql ) For Php Programmers
 
 `connect(string $dbname,string $username_db,string $password_db,string $host = 'localhost');`
 
-This Function : 
+This Function :
+
 ```php
-connect('dbName','myuser','passworduser');
+$cn = connect('dbName','myuser','passworduser');
 ```
+
 **class**
+
 ```php
 $db= new db(string $dbname,string $username_db,string $password_db,string $host = 'localhost');
 ```
-- Php : 
+
+- Php :
 
 ```php
 
@@ -33,25 +38,30 @@ $db= new db(string $dbname,string $username_db,string $password_db,string $host 
 - SQL
 
 ```sql
-select * from db where id = 10 limit 3
+select *
+from db
+where id = 10
+limit 3
 ```
 
 - PHP :
 
 ```php
-$select = select('*','db',['id'=>10],'limit 3');
+$select = select($cn, '*','db',['id'=>10],'limit 3');
 ```
 
 **OR**
 
 ```sql
-select * from db where id = 10 coin >= 15
+select *
+from db
+where id = 10 coin >= 15
 ```
 
 - PHP :
 
 ```php
-select('*','db',['id'=>10,['coin','>=',15]]);
+select($cn, '*','db',['id'=>10,['coin','>=',15]]);
 ```
 
 - execute :
@@ -91,14 +101,17 @@ array (size=2)
           'grade' => int 0
           'Download' => int 0
 ```
+
 - SQL
 
 ```sql 
 select * from db
 ```
+
 - PHP
+
 ```php
-select('*','db');
+select($cn, '*','db');
 ```
 
 # SQL LIKE Examples
@@ -106,16 +119,17 @@ select('*','db');
 - SQL
 
 ```sql
-SELECT * FROM Customers
+SELECT *
+FROM Customers
 WHERE CustomerName LIKE 'a%';
 ```
 
-
-- PHP 
+- PHP
 
 This Update : 2.0
+
 ```php
-like('*','Customers',[
+like($cn, '*','Customers',[
     'CustomerName'=>'a%'
 ]);
 ```
@@ -127,10 +141,11 @@ OR
 ```sql 
 select * from db where column LIKE 'a%' and id <= 15
 ```
+
 - PHP:
 
 ```php
-like('*','db',[
+like($cn, '*','db',[
        'column'=>"a%"
     ],
     [
@@ -147,16 +162,18 @@ OR
 ```sql 
 select * from db where column LIKE 'a%' and id = 15
 ```
+
 - PHP
 
 ```php
-like('*','db',[
+like($cn, '*','db',[
        'column'=>"a%"
     ],
     [
         'id'=>15
     ]);
 ```
+
 # MIN() Example
 
 - SQL
@@ -166,15 +183,14 @@ SELECT MIN(Price) AS SmallestPrice
 FROM Products;
 ```
 
-
 - PHP
 
 ```php
-select('MIN(Price) AS SmallestPrice','Products');
+select($cn, 'MIN(Price) AS SmallestPrice','Products');
 ```
 
-
 # SQL INNER JOIN Example
+
 **This section will be updated later**
 
 - SQL
@@ -183,46 +199,55 @@ select('MIN(Price) AS SmallestPrice','Products');
 SELECT Orders.OrderID, Customers.CustomerName FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
 ```
 
-
 - PHP
 
 ```php
-select('Orders.OrderID, Customers.CustomerName','Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID');
+select($cn, 'Orders.OrderID, Customers.CustomerName','Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID');
 ```
 
-
 # SQL insert Example
+
 - SQL :
 
 ```sql
-insert into table (one,tow,there) values ('one','tow','there')
+insert into table (one, tow, there)
+values ('one', 'tow', 'there')
 ```
 
 - php :
+
 ```php
 
-insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);
+insert($cn, 'table',['one'=>'one','tow'=>'tow','there'=>'there']);
 
 ```
+
 - **execute => false or true**
-query `insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);` :
+  query `insert('table',['one'=>'one','tow'=>'tow','there'=>'there']);` :
+
 ```sql
-insert into table (one,tow,there) values (?,?,?)
+insert into table (one, tow, there)
+values (?, ?, ?)
 ```
+
 **The content is then filled with prepare and bindValue**
 
 # SQL delete data
+
 `deleted(string $table ,$where = "None",string $other = null);`
 
 - SQL:
 
 ```sql
-DELETE FROM one WHERE p = 12
+DELETE
+FROM one
+WHERE p = 12
 ```
 
 - PHP:
+
 ```php
-deleted('one',['p'=>12]);
+deleted($cn, 'one',['p'=>12]);
 ```
 
 # SQL update Example
@@ -230,36 +255,44 @@ deleted('one',['p'=>12]);
 - SQL:
 
 ```sql
-update tb set id = '12' where name = '14'
+update tb
+set id = '12'
+where name = '14'
 ```
+
 - PHP :
 
 ```php
-update('tb',['id'=>12],['name'=>14]);
+update($cn, 'tb',['id'=>12],['name'=>14]);
 ```
+
 execute : false or true
 __If execute is equal to false, it means that the update has not been done__
 
+# SQL Created New Table
 
-# SQL Created New Table 
 `table(string $table,$column);`
 
 - SQL:
 
 ```sql
-CREATE TABLE accounts (
-        id int
-        );
+CREATE TABLE accounts
+(
+    id int
+);
 ```
+
 - php :
+
 ```php
-table('accounts',['id'=>'int']);
+table($cn, 'accounts',['id'=>'int']);
 ```
- execute => false or true
- 
- # SQL Set unique column
- 
- `unique(string $table,$column);`
+
+execute => false or true
+
+# SQL Set unique column
+
+`unique(string $table,$column);`
 
 - SQL :
 
@@ -272,75 +305,87 @@ ALTER TABLE articles
 
 ```php
 
-unique('articles',['slug']);
+unique($cn, 'articles',['slug']);
 ```
 
-
 # SQL Set  primary Key
+
 `primary(string $table,$column);`
 
-- SQL: 
+- SQL:
 
 ```sql
 ALTER TABLE accounts
     ADD PRIMARY KEY (token);
 ```
-- php : 
+
+- php :
+
 ```php
-primary('accounts',['token']);
+primary($cn, 'accounts',['token']);
 ```
 
 # Drop Table & column Exsample
 
 `drop($table,array $columns = []);`
 
-- SQL Drop column: 
+- SQL Drop column:
 
 ```sql
 ALTER TABLE table
-DROP COLUMN column;
+    DROP COLUMN column;
 ```
+
 - PHP Drop column:
+
 ```php
-drop('table',['column']);
+drop($cn, 'table',['column']);
 ```
-+ SQL Drop Table 
+
++ SQL Drop Table
 
 ```sql
 DROP TABLE a,b;
 ```
+
 - PHP Drop Table :
 
 ```php
-drop(['a','b']);
+drop($cn, ['a','b']);
 ```
 
 # Set AUTO_INCREMENT
 
 `autoIncrement(string $table, string $column);`
 
-Sql : 
+Sql :
 `ALTER TABLE `TableNabe` CHANGE `columnName` `columnName` BIGINT NOT NULL AUTO_INCREMENT;`
 
 PHP:
 
 ```php
-autoIncrement('TableNabe','columnName');
+autoIncrement($cn, 'TableNabe','columnName');
 ```
 
 PHP Classes:
+
 ```php
 $db->autoIncrement('TableNabe','columnName');
 ```
+
 # Update version 3.5
 
-   # Where 
-      - select
-      - update
-      - like
-      - delete
-   # Description
-      - If you enter another presentation in the presentation, you can (mandatory) send three values to the second presentation
-      - First value (first parameter): The name of the column in the table specified in the connect function
-      - Second value (second parameter): Enter the type Operators to check
-      - Third value (third parameter): value value to check 
+## Where
+
+- select
+- update
+- like
+- delete
+
+## Description
+
+- If you enter another presentation in the presentation, you can (mandatory) send three values to the second
+  presentation
+- First value (first parameter): The name of the column in the table specified in the connect function
+- Second value (second parameter): Enter the type Operators to check
+- Third value (third parameter): value to check 
