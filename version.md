@@ -93,3 +93,11 @@ __Fixed Bugs updates__
 - [X] Create Function autoIncrement
 - [X] Added Classes File
 - [X] Fixed All Bugs
+
+# v5.0
+
+- [X] Delete  class.php
+- [X] Change DB.php
+- [X] Create composer.json project
+- [X] Edit `README.md`
+- [X] Fix bug's
